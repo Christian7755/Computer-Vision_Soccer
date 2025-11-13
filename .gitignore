@@ -1,0 +1,10 @@
+.env
+soccer-venv
+data
+
+__pycache__/
+
+outputs
+
+models
+!src/models/  

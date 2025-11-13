@@ -3,3 +3,6 @@ inference
 supervision
 Pillow
 roboflow
+
+# für das Laden der Informationen aus der .env-Datei
+python-dotenv
