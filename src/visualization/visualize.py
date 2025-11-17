@@ -18,7 +18,8 @@ def visualize_detections(
     image, 
     results, 
     show_confidence=True,
-    box_thickness=3,
+    labels_on_image=True,
+    box_thickness=1,
     text_scale=1.5,
     text_thickness=2,
     text_padding=10,
@@ -40,24 +41,27 @@ def visualize_detections(
     else:
         labels = [f"{class_name}" for class_name in detections['class_name']]
     
-    # Annotators initialisieren
+    # Annotieren der Box im Bild
     bounding_box_annotator = sv.BoxAnnotator(thickness=box_thickness)
-    label_annotator = sv.LabelAnnotator(
-        text_scale=text_scale,
-        text_thickness=text_thickness,
-        text_padding=text_padding,
-        smart_position=smart_position
-    )
-    
-    # Bild annotieren
+
     annotated_image = bounding_box_annotator.annotate(
         scene=image, 
         detections=detections
     )
-    annotated_image = label_annotator.annotate(
-        scene=annotated_image, 
-        detections=detections, 
-        labels=labels
-    )
-    
-    return annotated_image
+
+    if labels_on_image:
+        label_annotator = sv.LabelAnnotator(
+            text_scale=text_scale,
+            text_thickness=text_thickness,
+            text_padding=text_padding,
+            smart_position=smart_position
+        )
+        
+        annotated_image = label_annotator.annotate(
+            scene=annotated_image, 
+            detections=detections, 
+            labels=labels
+        )
+        return annotated_image
+    else:
+        return annotated_image, labels
