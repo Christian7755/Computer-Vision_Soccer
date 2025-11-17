@@ -36,6 +36,7 @@ class ModelManager:
     def infer(self, image):
         """
         Führt Inferenz auf einem Bild durch.
+        Nutzung eines PIL Images
         
         Args:
             image: PIL.Image, numpy array, oder str/Path (Pfad zum Bild)
@@ -43,9 +44,9 @@ class ModelManager:
         if self.model is None:
             self.load_model()
         
-        # Fall 1: PIL Image → konvertiere zu numpy array
-        if isinstance(image, Image.Image):
-            image = np.array(image)
+        # Fall 1: numpy array → konvertiere zu PIL Image
+        if isinstance(image, np.ndarray):
+            image = Image.fromarray(image)
         
         # Fall 2: Path Objekt → konvertiere zu String
         elif isinstance(image, Path):
