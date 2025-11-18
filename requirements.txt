@@ -3,6 +3,7 @@ inference
 supervision
 Pillow
 roboflow
+lime
 
 # für das Laden der Informationen aus der .env-Datei
 python-dotenv
