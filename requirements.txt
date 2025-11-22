@@ -3,7 +3,12 @@ inference
 supervision
 Pillow
 roboflow
+#Für die Erklärungen mit LIME
 lime
+
+#Für die Erklärungen mit SHAP
+torch
+torchvision
 
 # für das Laden der Informationen aus der .env-Datei
 python-dotenv
