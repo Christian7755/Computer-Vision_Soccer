@@ -1,6 +1,8 @@
 .env
 soccer-venv
 data
+xai-venv
+.vscode
 
 __pycache__/
 
