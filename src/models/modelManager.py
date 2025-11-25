@@ -7,6 +7,18 @@ from PIL import Image
 from pathlib import Path
 import cv2
 from inference import get_model
+
+import sys
+from pathlib import Path
+# Definiert den Pfad zum Projekt-Wurzelverzeichnis (Computer-Vision_Soccer/)
+# und fügt ihn dem Python-Suchpfad hinzu
+FILE = Path(__file__).resolve()
+# Geht 2 Ebenen hoch von src/models/modelManager.py zur Wurzel
+ROOT = FILE.parents[2] 
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
+    
+    
 from src.config import ROBOFLOW_API_KEY, MODEL_ID
 
 class ModelManager:
@@ -31,7 +43,7 @@ class ModelManager:
             self.model = get_model(model_id=self.model_id, api_key=self.api_key)
             print("✓ Modell geladen")
         return self.model
-    
+
     
     def infer(self, image):
         """
